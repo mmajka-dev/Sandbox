@@ -20,7 +20,6 @@ import com.mmajka.sandbox.utils.extensions.setSafeOnClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
 
 /**
  *  @note Picked image is saving to file for later send to BE
