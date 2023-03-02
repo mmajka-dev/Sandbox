@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/chooseFeatureFragment">
+
+    <fragment
+        android:id="@+id/pickImageFragment"
+        android:name="com.mmajka.sandbox.presentation.pickImage.PickImageFragment"
+        android:label="PickImageFragment" />
+    <fragment
+        android:id="@+id/chooseFeatureFragment"
+        android:name="com.mmajka.sandbox.presentation.feature.ChooseFeatureFragment"
+        android:label="ChooseFeatureFragment" >
+        <action
+            android:id="@+id/navigatePickImage"
+            app:destination="@id/pickImageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+</navigation>
