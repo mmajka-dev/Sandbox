@@ -10,6 +10,7 @@ class FeaturesDataSource @Inject constructor() {
         delay(500)
         return listOf(
             Feature.PickImage,
+            Feature.RadioButtonList,
         )
     }
 }

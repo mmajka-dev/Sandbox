@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.mmajka.sandbox.databinding.FragmentChooseFeatureBinding
-import com.mmajka.sandbox.feature.ChooseFeatureFragmentDirections
 import com.mmajka.sandbox.presentation.feature.ui.FeatureAdapter
 import com.mmajka.sandbox.model.Feature
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,6 +76,9 @@ class ChooseFeatureFragment : Fragment() {
         when (feature) {
             Feature.PickImage -> findNavController().navigate(
                 ChooseFeatureFragmentDirections.navigatePickImage(),
+            )
+            Feature.RadioButtonList -> findNavController().navigate(
+                ChooseFeatureFragmentDirections.navigateRadioButtonList(),
             )
         }
     }
