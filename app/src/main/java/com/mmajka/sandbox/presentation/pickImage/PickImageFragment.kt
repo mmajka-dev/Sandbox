@@ -1,5 +1,6 @@
 package com.mmajka.sandbox.presentation.pickImage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.mmajka.sandbox.databinding.FragmentPickImageBinding
 import com.mmajka.sandbox.utils.Constants.NO_ITEM_SELECTED
+import com.mmajka.sandbox.utils.contracts.TakePictureContract
 import com.mmajka.sandbox.utils.extensions.createFileFromUri
 import com.mmajka.sandbox.utils.extensions.load
 import com.mmajka.sandbox.utils.extensions.setSafeOnClickListener
@@ -32,12 +34,7 @@ class PickImageFragment : Fragment() {
     private var _binding: FragmentPickImageBinding? = null
     private val binding get() = _binding!!
 
-    private val imageLauncher = registerForActivityResult(PickVisualMedia()) { uri ->
-        uri?.let {
-            val file = createFileFromUri(uri, FILE_PREFIX, FILE_EXTENSION)
-            viewModel.onImageSelected(file)
-        }
-    }
+    private var imageChooser: ChooseIntentBottomSheet? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,10 +64,14 @@ class PickImageFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        imageChooser = null
         _binding = null
     }
 
     private fun initViews() = with(binding) {
+        imageChooser = ChooseIntentBottomSheet { file ->
+            viewModel.onImageSelected(file)
+        }
         pickImageButton.setSafeOnClickListener {
             viewModel.onPickImageButtonClicked()
         }
@@ -81,7 +82,7 @@ class PickImageFragment : Fragment() {
 
     private fun onNewEvent(event: PickImageViewEvent) {
         when (event) {
-            PickImageViewEvent.OnPickImageButtonClicked -> launchImagePicker()
+            PickImageViewEvent.OnPickImageButtonClicked -> openImageChooser()
             is PickImageViewEvent.ShowMessage -> showSnackbar(event.message)
         }
     }
@@ -95,8 +96,8 @@ class PickImageFragment : Fragment() {
         binding.progressIndicator.isVisible = state.isLoading
     }
 
-    private fun launchImagePicker() {
-        imageLauncher.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+    private fun openImageChooser() {
+        imageChooser?.show(childFragmentManager, CHOOSER_TAG)
     }
 
     private fun showSnackbar(message: String) {
@@ -104,7 +105,6 @@ class PickImageFragment : Fragment() {
     }
 
     companion object {
-        private const val FILE_PREFIX = "temp_img_"
-        private const val FILE_EXTENSION = ".png"
+        private const val CHOOSER_TAG = "CHOOSER_TAG"
     }
 }

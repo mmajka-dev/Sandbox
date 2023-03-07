@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sandbox</string>
+    <string name="fragment_pick_image_choose_image">Choose picture</string>
+    <string name="fragment_pick_image_take_picture">Take picture</string>
 </resources>

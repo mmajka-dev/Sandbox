@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="30dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/dragHandle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/galleryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_rounded"
+        android:padding="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_image_search"
+        app:layout_constraintEnd_toStartOf="@+id/takePictureButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dragHandle" />
+
+    <ImageView
+        android:id="@+id/takePictureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_rounded"
+        android:padding="20dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_image_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/galleryButton"
+        app:layout_constraintTop_toBottomOf="@id/dragHandle" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/chooseImageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_pick_image_choose_image"
+        app:layout_constraintEnd_toEndOf="@+id/galleryButton"
+        app:layout_constraintStart_toStartOf="@+id/galleryButton"
+        app:layout_constraintTop_toBottomOf="@+id/galleryButton" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/takePictureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/fragment_pick_image_take_picture"
+        app:layout_constraintEnd_toEndOf="@+id/takePictureButton"
+        app:layout_constraintStart_toStartOf="@+id/takePictureButton"
+        app:layout_constraintTop_toBottomOf="@+id/takePictureButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
